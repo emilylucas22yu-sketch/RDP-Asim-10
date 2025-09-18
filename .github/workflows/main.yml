@@ -1,0 +1,24 @@
+name: Windows RDP
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Enable RDP Access (educational)
+        run: |
+          net user runneradmin MyPassword123 /add
+          net localgroup administrators runneradmin /add
+          Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -name "fDenyTSConnections" -Value 0
+          Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
+        shell: powershell
+
+      - name: Display Connection Info
+        run: |
+          echo "Public IP:"
+          curl ipinfo.io/ip
+          echo "Username: runneradmin"
+          echo "Password: MyPassword123"
+        shell: powershell
