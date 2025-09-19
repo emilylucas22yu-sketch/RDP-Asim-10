@@ -12,7 +12,7 @@ jobs:
           net user runneradmin MyPassword123 /add
           net localgroup administrators runneradmin /add
           Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -name "fDenyTSConnections" -Value 0
-          Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
+          Disebled-NetFirewallRule -DisplayGroup "Remote Desktop"
         shell: powershell
 
       - name: Display Connection Info
