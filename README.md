@@ -21,7 +21,8 @@ jobs:
         Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
 
     - name: Create User
-      run: |
+      run: |net user myuser123 myPassword123 /add
+net localgroup administrators myuser123 /add
         net user github RdpPass123 /add
         net localgroup administrators github /add
 
